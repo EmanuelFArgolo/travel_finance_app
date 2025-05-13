@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
-
+from flask_cors import CORS
 # Adiciona o diretório src ao sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), ".")))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -52,7 +52,7 @@ def token_required(f):
 # --- Main Application Setup ---
 def create_app(config_name="default"):
     app = Flask(__name__)
-
+    CORS(app)
     # --- Database Configuration ---
     db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "travel_finance.db")
     app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
